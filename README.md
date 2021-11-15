@@ -1,0 +1,1 @@
+Game Jaga Jarak ini merupakan game bergenre casual yang dapat dimainkan pada platform android
