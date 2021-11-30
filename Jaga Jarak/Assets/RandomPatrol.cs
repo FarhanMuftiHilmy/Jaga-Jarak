@@ -17,13 +17,15 @@ public class RandomPatrol : MonoBehaviour
 
     float speed;
 
-    public GameObject Panel;
+    //private Animator ani;
+    //bool isLeft = false;
 
     public float secondToMaxDif;
     // Start is called before the first frame update
     void Start()
     {
         targetPosition = GetRandomPosition();
+        //ani = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -44,16 +46,20 @@ public class RandomPatrol : MonoBehaviour
     {
         float randomX = Random.Range(minX, maxX);
         float randomY = Random.Range(minY, maxY);
+       /*
+        if(randomX <= 0)
+        {
+            isLeft = true;
+        }
+        else
+        {
+            isLeft = false;
+        }
+        ani.SetBool("direction", isLeft);
+        */
         return new Vector2(randomX, randomY);
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.tag == "Patient")
-        {
-            Panel.SetActive(true);
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-    }
+
 
     float GetDifficultyPercent()
     {

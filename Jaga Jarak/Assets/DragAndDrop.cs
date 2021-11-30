@@ -6,11 +6,22 @@ public class DragAndDrop : MonoBehaviour
 {
     bool gerak;
     Collider2D col;
+    public AudioSource[] sounds;
+    public AudioSource sound1;
+    public AudioSource sound2;
+
+    public GameObject selectionEffect;
+
+    private GameManager gm;
 
     // Start is called before the first frame update
     void Start() 
     {
+        gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManager>();
         col = GetComponent<Collider2D>();
+        sounds = GetComponents<AudioSource>();
+        sound1 = sounds[0];
+        sound2 = sounds[1];
     }
 
     // Update is called once per frame
@@ -27,6 +38,8 @@ public class DragAndDrop : MonoBehaviour
                 if(col == touchedCollider)
                 {
                     gerak = true;
+                    Instantiate(selectionEffect, transform.position, Quaternion.identity); 
+                    sound2.Play();
                 }
             }
             if(touch.phase == TouchPhase.Moved)
@@ -42,4 +55,16 @@ public class DragAndDrop : MonoBehaviour
             }
         }
     }
+    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Patient" || collision.tag == "Corona" || collision.tag == "Patient-Shooter")
+        {
+            sound1.Play();
+            gm.GameOver();
+            //Panel.SetActive(true);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+    }
+    
 }

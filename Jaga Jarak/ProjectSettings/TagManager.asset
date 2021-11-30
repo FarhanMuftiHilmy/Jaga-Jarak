@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Patient
+  - GM
+  - Patient-Target-1
+  - Patient-Target-2
+  - Corona
+  - Patient-Shooter
+  - Projectile
   layers:
   - Default
   - TransparentFX
